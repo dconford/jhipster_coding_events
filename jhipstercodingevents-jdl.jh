@@ -1,0 +1,54 @@
+
+entity EventCategory {
+	name String required minlength(3)
+	}
+
+entity EventDetails {
+	description String maxlength(500)
+	email String
+	}
+
+entity Event {
+    name String required minlength(3) maxlength(50)
+    eventCategory EventCategory required
+    eventDetails EventDetails required
+    }
+
+relationship OneToOne {
+	Event to EventDetails
+	}
+
+
+
+// relationship OneToMany {
+//  ParkingSpace{bookingSlots} to BookingSlot{parkingSpace(name)}
+// }
+
+relationship OneToMany {
+ 	CrimeCategoryData {ReportedEvents(crimeCategoryShortened)}
+	to ReportedEvents {CrimeCategoryData}
+}
+
+relationship OneToMany {
+ 	EventCategory{events}
+	to Event{eventCategory(name)
+	}
+
+
+
+// defining multiple OneToMany relationships with comments
+
+// defining multiple oneToOne relationships
+
+
+// Set pagination options
+//paginate JobHistory, Employee with infinite-scroll
+paginate Event with pagination
+
+// Use Data Transfert Objects (DTO)
+ dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl
+// Set an angular suffix
+// angularSuffix * with mySuffix
