@@ -1,6 +1,7 @@
 
 entity EventCategory {
 	name String required minlength(3)
+	events List<Event>
 	}
 
 entity EventDetails {
@@ -14,6 +15,15 @@ entity Event {
     eventDetails EventDetails required
     }
 
+
+
+@OneToMany(mappedBy = "eventCategory")
+    private final List<Event> events = new ArrayList<>();
+
+
+
+
+
 relationship OneToOne {
 	Event to EventDetails
 	}
@@ -24,10 +34,10 @@ relationship OneToOne {
 //  ParkingSpace{bookingSlots} to BookingSlot{parkingSpace(name)}
 // }
 
-relationship OneToMany {
- 	CrimeCategoryData {ReportedEvents(crimeCategoryShortened)}
-	to ReportedEvents {CrimeCategoryData}
-}
+//relationship OneToMany {
+// 	CrimeCategoryData {ReportedEvents(crimeCategoryShortened)}
+//	to ReportedEvents {CrimeCategoryData}
+//}
 
 relationship OneToMany {
  	EventCategory{events}
